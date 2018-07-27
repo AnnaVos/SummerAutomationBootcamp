@@ -38,6 +38,7 @@ public class EmptyCartTest extends TestShopScenario {
 
         Assert.assertTrue(driver.findElement(By.cssSelector("[class=\'alert alert-warning\']")).isDisplayed());
 
+        driver.quit();
 
 
 

@@ -49,7 +49,7 @@ System.out.println("Name is " + getName.getAttribute("value"));
             }
             else {
                 driver.findElement(By.cssSelector("#firstname")).clear();
-                driver.findElement(By.cssSelector("#firstname")).sendKeys("Annaaatje");
+                driver.findElement(By.cssSelector("#firstname")).sendKeys("Anna");
             }
 
 
@@ -59,6 +59,7 @@ System.out.println("Name is " + getName.getAttribute("value"));
         driver.findElement(By.cssSelector("#old_passwd")).sendKeys("Welkom123!");
         driver.findElement(By.cssSelector("#center_column > div > form > fieldset > div:nth-child(11) > button")).click();
 
+        // check if message "Your personal information has been successfully updated" is displayed:
         Assert.assertTrue(driver.findElement(By.cssSelector("#center_column > div > p")).isDisplayed());
 
         driver.quit();
