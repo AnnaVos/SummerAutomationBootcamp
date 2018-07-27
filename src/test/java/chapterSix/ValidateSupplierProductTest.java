@@ -36,14 +36,14 @@ public class ValidateSupplierProductTest {
         /* Select dropdown = new Select(driver.findElement(By.cssSelector("#search_query_top")));
         dropdown.selectByVisibleText("MacBook Air"); */
 
-        List<WebElement> appleProducts = driver.findElements(By.cssSelector("#center_column"));
+        List<WebElement> appleProducts = driver.findElements(By.id("center_column"));
         List<String> productStringList = new ArrayList<String>();
 
         boolean productFound = false;
-    for (int i = 0 ; i<productStringList.size(); i++)
+    //for (int i = 0 ; i<productStringList.size(); i++)
 
         for (WebElement e : appleProducts) {
-            if (e.getAttribute("title").equals("MacBook Air")) {
+            if (e.getText().equals("MacBook Air")) {
                 System.out.println("MacBook Air is found in List");
                 productFound = true;
             } else {
