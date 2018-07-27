@@ -39,8 +39,9 @@ public class ValidateSupplierProductTest {
         List<WebElement> appleProducts = driver.findElements(By.cssSelector("#center_column"));
         List<String> productStringList = new ArrayList<String>();
 
-    for (int i = 0 ; i<productStringList.lenght; i++)
         boolean productFound = false;
+    for (int i = 0 ; i<productStringList.size(); i++)
+
         for (WebElement e : appleProducts) {
             if (e.getAttribute("title").equals("MacBook Air")) {
                 System.out.println("MacBook Air is found in List");
