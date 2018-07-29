@@ -3,41 +3,38 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class ContactUsPage {
 
-        private final WebDriver driver;
+                private final WebDriver driver;
 
-       /*  WebElement dropDownListBox = driver.findElement(By.id("#id_contact"));
-        Select clickThis = new Select(dropDownListBox);
-        clickThis.selectByValue("Customer service");
+               /* private By subjectField = By.className("selector hover focus"))); */
 
-    Select droplist = new Select(driver.findElement(By.cssSelector("#id_contact")));
-    droplist.selectByVisibleText("Customer service"); */
+                private By emailTextField = By.cssSelector("#email");
 
-        private By subjectField = By.cssSelector("#id_contact");
+                private By orderIdTextField = By.cssSelector("input#id_order");
 
-        private By emailTextField = By.cssSelector("#email");
+                private By messageTextField = By.cssSelector("textarea#message");
 
-        private By orderIdTextField = By.cssSelector("input#id_order");
+                private By sendButton = By.cssSelector("button#submitMessage");
 
-        private By messageTextField = By.cssSelector("textarea#message");
+                private By invalidEmailElement = By.cssSelector(".alert.alert-danger>ol>li");
 
-        private By sendButton = By.cssSelector("button#submitMessage");
+                public ContactUsPage(WebDriver driver){
+                    this.driver = driver;
+                }
 
-        private By invalidEmailElement = By.cssSelector(".alert.alert-danger>ol>li");
+                public void fillInContactForm (String subject, String email, String orderID, String message){
 
-        public ContactUsPage(WebDriver driver){
-            this.driver = driver;
-        }
+                    Select dropdown = new Select (driver.findElement(By.cssSelector("#id_contact")));
+                    dropdown.selectByVisibleText(subject);
+                    driver.findElement(emailTextField).sendKeys(email);
+                    driver.findElement(orderIdTextField).sendKeys(orderID);
+                    driver.findElement(messageTextField).sendKeys(message);
+                    driver.findElement(sendButton).click();
 
-        public void fillInContactForm (String subject, String email, String orderID, String message){
-            driver.findElement(subjectField).isSelected(subject);
-            driver.findElement(emailTextField).sendKeys(email);
-            driver.findElement(orderIdTextField).sendKeys(orderID);
-            driver.findElement(messageTextField).sendKeys(message);
-            driver.findElement(sendButton).click();
     }
 
 
