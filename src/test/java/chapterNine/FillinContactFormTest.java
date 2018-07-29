@@ -5,12 +5,15 @@ import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.ContactUsPage;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class FillinContactFormTest extends TestShopScenario {
@@ -25,6 +28,8 @@ public class FillinContactFormTest extends TestShopScenario {
 
         ContactUsPage contactUsPage = new ContactUsPage(driver);
         contactUsPage.fillInContactForm("Customer service", "bootcamper@feelthepain.com", "4321234", "Ipod defect while lifting, need new one.");
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         String texttext = "Your message has been successfully sent to our team.";
         Assertions.assertThat(texttext).as("Contact form is submitted").contains(driver.findElement(By.cssSelector("#center_column > p")).getText());
