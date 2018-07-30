@@ -17,7 +17,7 @@ public class DeleteWishListTest extends loginAsUserAnna {
     @Test
     public void DeleteNoPainNoGainFromListTwo() {
 
-        // create a wait:
+        // create a wait
         WebDriverWait wait = new WebDriverWait(driver, 10);
 
         // Open the wish list page
@@ -26,6 +26,7 @@ public class DeleteWishListTest extends loginAsUserAnna {
         // Wait until table is visible
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"block-history\"]/table"))));
 
+        // put static elements in string
         String beforeXpath = "//html[1]/body[1]/div[1]/div[2]/div[1]/div[3]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[";
         String afterXpath = "]/td[1]";
 
@@ -52,6 +53,7 @@ public class DeleteWishListTest extends loginAsUserAnna {
         }
         Assertions.assertThat(itemDeleted).as("item not deleted.").isTrue();
 
+        // add item to wish list
         driver.findElement(By.cssSelector("#name")).sendKeys("No Pain No Gain");
         driver.findElement(By.cssSelector("#submitWishlist")).click();
     }
