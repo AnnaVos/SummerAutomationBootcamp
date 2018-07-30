@@ -18,8 +18,6 @@ public class loginAsUserAnna {
     public void setUp() {
         ChromeDriverManager.getInstance().setup();
         driver = new ChromeDriver();
-        // create a wait:
-        WebDriverWait wait = new WebDriverWait(driver, 10);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -36,6 +34,9 @@ public class loginAsUserAnna {
 
     @AfterMethod
     public void tearDown() {
+
+        driver.findElement(By.cssSelector("#name")).sendKeys("No Pain No Gain");
+        driver.findElement(By.cssSelector("#submitWishlist")).click();
         driver.quit();
     }
 }

@@ -1,43 +1,24 @@
 package homeWork;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class DeleteWishListTest {
-
-
+public class DeleteWishListTest extends loginAsUserAnna {
 
     @Test
-    public void DeleteNoPainNoGainFromList() {
+    public void DeleteNoPainNoGainFromListTwo() {
 
-        ChromeDriverManager.getInstance().setup();
-        WebDriver driver = new ChromeDriver();
         // create a wait:
         WebDriverWait wait = new WebDriverWait(driver, 10);
-
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-        // go to test shop:
-        driver.get("https:techblog.polteq.com/testshop");
-
-        // log in:
-        driver.findElement(By.className("login")).click();
-        driver.findElement(By.id("email")).sendKeys("anna@vos.com");
-        driver.findElement(By.id("passwd")).sendKeys("1qazxsw2");
-        driver.findElement(By.id("SubmitLogin")).click();
 
         // Open the wish list page
         driver.findElement(By.cssSelector("#wishlist_block > div > div.lnk > a")).click();
@@ -45,57 +26,30 @@ public class DeleteWishListTest {
         // Wait until table is visible
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"block-history\"]/table"))));
 
-        //To locate table
-        WebElement myTable = driver.findElement(By.xpath("//*[@id=\"block-history\"]/table"));
-        //To locate rows of table
-        List<WebElement> rows_table = myTable.findElements(By.tagName("tr"));
-        //To calculate number of rows in table
-        int rows_count = rows_table.size();
+        String beforeXpath = "//html[1]/body[1]/div[1]/div[2]/div[1]/div[3]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[";
+        String afterXpath = "]/td[1]";
 
-             //Loop will execute until the last row of the table
-        for (int row = 0; row < rows_count; row++) {
-            //To locate columns(cells) of that specific row
-            List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
-            //To calculate no of columns(cells) In that specific row
-            int columns_count = Columns_row.size();
-            //System.out.println("This is Row " + row + " and has " + columns_count + " colums.");
+        boolean itemDeleted = false;
 
-            //Loop will execute till the last cell of that specific row
-            for (int column = 0; column < columns_count; column++) {
-                //To retrieve text from cells
-                String celText = Columns_row.get(column).getText();
-                // System.out.println("Cell Value Of row number " + row + " and column number " + column + " Is " + celtext);
+        for (int i = 1; i < 6; i++) {
+            String name = driver.findElement(By.xpath(beforeXpath + i + afterXpath)).getText();
+            System.out.println(name);
+            if (name.contains("No Pain No Gain")) { // i=5
 
-                if (celText.equals("No Pain No Gain")) {
+                // click delete button
+                driver.findElement(By.xpath("//html[1]/body[1]/div[1]/div[2]/div[1]/div[3]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[7]/a[1]/i[1]")).click();
 
-                    //delete from wish list
-                    driver.findElement(By.xpath("//*[@id=\"wishlist_1128\"]/td[7]/a/i")).click();
-                    //switch to pup up browser
-                    Set<String> set1=driver.getWindowHandles();
-                    Iterator<String> win1=set1.iterator();
-                    String parent=win1.next();
-                    String child=win1.next();
-                    driver.switchTo().window(child);
+                // accept alert message
+                Alert alert = driver.switchTo().alert();
+                alert.accept();
 
-                    // click OK
-                    Alert alert = driver.switchTo().alert();
-                    alert.accept();
+                itemDeleted = true;
 
-                    //switch back to parent browser
-                    //driver.switchTo().window(parent);
-
-                    System.out.println("Deleted item 'No Pain No Gain!");
-                }
-                else {
-                    System.out.println("Did NOT delete item 'No Pain No Gain.");
-                }
-
+                System.out.println("Item deleted.");
+            } else {
+                System.out.println("Item NOT deleted.");
             }
-            System.out.println("-----------------------------------------------------------------------");
-
-                 }
-
         }
-
-        }
-
+        Assertions.assertThat(itemDeleted).as("item not deleted.").isTrue();
+    }
+}
