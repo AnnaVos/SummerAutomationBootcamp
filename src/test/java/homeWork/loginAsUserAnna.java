@@ -35,8 +35,6 @@ public class loginAsUserAnna {
     @AfterMethod
     public void tearDown() {
 
-        driver.findElement(By.cssSelector("#name")).sendKeys("No Pain No Gain");
-        driver.findElement(By.cssSelector("#submitWishlist")).click();
         driver.quit();
     }
 }

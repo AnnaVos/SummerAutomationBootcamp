@@ -51,5 +51,8 @@ public class DeleteWishListTest extends loginAsUserAnna {
             }
         }
         Assertions.assertThat(itemDeleted).as("item not deleted.").isTrue();
+
+        driver.findElement(By.cssSelector("#name")).sendKeys("No Pain No Gain");
+        driver.findElement(By.cssSelector("#submitWishlist")).click();
     }
 }
