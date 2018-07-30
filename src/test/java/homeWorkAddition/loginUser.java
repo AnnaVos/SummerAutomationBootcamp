@@ -1,4 +1,4 @@
-package homeWork;
+package homeWorkAddition;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.By;
@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-public class loginAsUserAnna {
+public class loginUser {
 
     protected WebDriver driver;
 
@@ -37,5 +37,4 @@ public class loginAsUserAnna {
         driver.quit();
     }
 }
-
 
