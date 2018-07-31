@@ -50,7 +50,9 @@ public class ValidateSupplierProductTest {
                 System.out.println("No MacBook Air found in List");
             }
         }
-        Assert.assertTrue(driver.findElement(By.cssSelector("#product_list > li.ajax_block_product.col-xs-12.col-sm-6.col-md-4.last-in-line.last-line.last-item-of-tablet-line.last-item-of-mobile-line.last-mobile-line > div > div.right-block > h5 > a")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("#product_list > li.ajax_block_product.col-xs-12.col-" +
+                "sm-6.col-md-4.last-in-line.last-line.last-item-of-tablet-line.last-item-of-mobile-line.last-mobile-" +
+                "line > div > div.right-block > h5 > a")).isDisplayed());
         Assertions.assertThat(productFound).as("Product not found").isTrue();
         driver.quit();
     }
