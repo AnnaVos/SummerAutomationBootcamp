@@ -32,7 +32,7 @@ public class AdjustPersonalInfoTest {
         driver.findElement(By.id("SubmitLogin")).click();
 
         // go to my personal info:
-        driver.findElement(By.cssSelector("#center_column > div > div:nth-child(1) > ul > li:nth-child(5) > a")).click();
+        driver.findElement(By.cssSelector(".icon-user")).click();
 
         // check and update name:
         WebElement getName = driver.findElement(By.cssSelector("#firstname"));

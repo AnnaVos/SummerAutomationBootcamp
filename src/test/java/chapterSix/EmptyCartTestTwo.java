@@ -1,6 +1,7 @@
 package chapterSix;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,20 +12,12 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class EmptyCartTestTwo {
+public class EmptyCartTestTwo extends TestShopScenario {
 
     @Test
-    public void EmptyCart() {
-
-        ChromeDriverManager.getInstance().setup();
-        WebDriver driver = new ChromeDriver();
+    public void EmptyCart() throws InterruptedException {
         // create a wait:
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-        driver.get("https:techblog.polteq.com/testshop");
+        WebDriverWait myWaitVar = new WebDriverWait(driver, 10);
 
         // check if cart is empty:
         if (driver.findElement(By.cssSelector("[class=\'ajax_cart_no_product\']")).isDisplayed()) {
@@ -35,26 +28,36 @@ public class EmptyCartTestTwo {
 
         // add item to cart:
         driver.findElement(By.cssSelector("#tags_block_left > div > a.tag_level3.first_item")).click();
-        driver.findElement(By.cssSelector("#product_list > li.ajax_block_product.col-xs-12.col-sm-6.col-md-4.last-line.last-item-of-tablet-line.last-mobile-line > div > div.left-block > div > a > img")).click();
+        driver.findElement(By.cssSelector("#product_list > li.ajax_block_product.col-xs-12.col-sm-6.col-md-4.last-" +
+                "line.last-item-of-tablet-line.last-mobile-line > div > div.left-block > div > a > img")).click();
         driver.findElement(By.cssSelector("#add_to_cart")).click();
 
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("#layer_cart > div.clearfix > div.layer_cart_cart.col-xs-12.col-md-6 > div.button-container > span"))));
-        // exit screen:
-        driver.findElement(By.cssSelector("#layer_cart > div.clearfix > div.layer_cart_cart.col-xs-12.col-md-6 > div.button-container > span")).click();
+        // continue shopping
+        myWaitVar.until(ExpectedConditions.elementToBeClickable(By.cssSelector("span[title='Continue shopping']"))).click();
 
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("##header > div:nth-child(2) > div > div > div:nth-child(4) > div > a > span.ajax_cart_product_txt.unvisible"))));
-        // go to shopping cart:
-        driver.findElement(By.cssSelector("#header > div:nth-child(2) > div > div > div:nth-child(4) > div > a > span.ajax_cart_product_txt.unvisible")).click();
+        // check if cart number is 1
+        Assertions.assertThat(driver.findElement(By.className("ajax_cart_quantity")).getText()).as(
+                "Check if number is 1").isEqualTo("1");
 
-
-        /* //Proceed to checkout (cart)
-        driver.findElement(By.cssSelector("#layer_cart > div.clearfix > div.layer_cart_cart.col-xs-12.col-md-6 > div.button-container > a")).click();
-        //empty cart by quantity down by one
-        driver.findElement(By.cssSelector("#cart_quantity_down_2_2_0_0")).click();
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("[class=\'alert alert-warning\']"))));
+        // click the cart button
+        // overlay is blocking the cart button (!!! .click(); is missing !!!)
+        myWaitVar.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".shopping_cart>a"))).click();
 
 
-        Assert.assertTrue(driver.findElement(By.cssSelector("[class=\'alert alert-warning\']")).isDisplayed()); */
+        // overlay menu needs time to appear
+        Thread.sleep(1000);
+        driver.findElement(By.className("icon-trash")).click();
+
+        // after clicking the trash icon the site needs time to delete the webtable and show the empty cart message
+        String emptyCartMessage = myWaitVar.until(ExpectedConditions.visibilityOfElementLocated
+                (By.cssSelector(".alert.alert-warning"))).getText();
+
+        Assertions.assertThat(emptyCartMessage).as("Validate if the empty cart message appears").isEqualTo
+                ("Your shopping cart is empty.");
+
+        Assertions.assertThat(driver.findElement(By.className("ajax_cart_no_product")).isDisplayed()).as
+                ("Check if empty element is visible").isTrue();
     }
 }
-/* #layer_cart > div.clearfix > div.layer_cart_cart.col-xs-12.col-md-6 > span > span.ajax_cart_product_txt */
+
+

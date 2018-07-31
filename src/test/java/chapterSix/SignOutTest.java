@@ -13,13 +13,6 @@ public class SignOutTest extends TestShopScenario {
 
     @Test
     public void logInSuccesFull() {
-        /* ChromeDriverManager.getInstance().setup();
-        WebDriver driver = new ChromeDriver();
-
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-        driver.get("https:techblog.polteq.com/testshop"); */
 
         driver.findElement(By.className("login")).click();
         driver.findElement(By.id("email")).sendKeys("anna.tester@polteq.com");
@@ -33,21 +26,25 @@ public class SignOutTest extends TestShopScenario {
 
     @Test
     public void logOutSuccesFull() {
-        /* ChromeDriverManager.getInstance().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-        driver.get("https:techblog.polteq.com/testshop"); */
 
         driver.findElement(By.className("login")).click();
         driver.findElement(By.id("email")).sendKeys("anna.tester@polteq.com");
         driver.findElement(By.id("passwd")).sendKeys("Welkom123!");
         driver.findElement(By.id("SubmitLogin")).click();
-        driver.findElement(By.cssSelector("#header > div.nav > div > div > nav > div:nth-child(3) > a")).click();
+
+        driver.findElement(By.className("logout")).click();
 
         String text = "Sign in";
-        Assertions.assertThat(text).as("User is logged out").contains(driver.findElement(By.cssSelector("#header > div.nav > div > div > nav > div.header_user_info > a")).getText());
+        Assertions.assertThat(text).as("Check if the sign in element is present").contains(driver.findElement
+                (By.cssSelector("#header > div.nav > div > div > nav > div.header_user_info > a")).getText());
+
+        Assertions.assertThat(driver.findElement(By.cssSelector(".login")).getText()).as
+                ("Check if the sign in element is present").isEqualTo("Sign in");
+
+        String className = driver.findElement(By.cssSelector("#header > div.nav > div > div > nav > div.header_" +
+                "user_info > a")).getAttribute("class");
+
+        Assertions.assertThat(className).as("Check if the sign in element is present").isEqualTo("login");
 
 
     }
