@@ -1,7 +1,5 @@
 package chapterSix;
 
-import browser.BrowserFactoryAdvanced;
-import browser.BrowserFactoryBasic;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,15 +9,14 @@ import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-
-public class TestShopScenario  {
+public class TestShopScenarioInitial {
 
     protected WebDriver driver;
 
     @BeforeMethod
     public void setUp() {
-
-        driver = BrowserFactoryAdvanced.getDriver(BrowserFactoryAdvanced.Browser.CHROME);
+        ChromeDriverManager.getInstance().setup();
+        driver = new ChromeDriver();
         // create a wait:
         WebDriverWait wait = new WebDriverWait(driver, 10);
 
@@ -29,9 +26,10 @@ public class TestShopScenario  {
         driver.get("https:techblog.polteq.com/testshop");
     }
 
-        @AfterMethod
-        public void tearDown() {
-            driver.quit();
-        }
+    @AfterMethod
+    public void tearDown() {
+        driver.quit();
     }
+}
+
 
