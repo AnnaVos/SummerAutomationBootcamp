@@ -26,7 +26,7 @@ public class LoginTest extends TestShopScenario {
         String infoAccount = driver.findElement(By.className("info-account")).getText();
         Assertions.assertThat(infoAccount).as("Welcome message contains").contains("Welcome to your account.");
 
-        WebElement header = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/nav[1]/div[2]/a[1]/span[1]"));
-        Assertions.assertThat("header").as("Header is equal to").contains("Seargent Slaughter").getText();
+        //WebElement user = driver.findElement(By.cssSelector("#header > div.nav > div > div > nav > div:nth-child(2) > a > span"));
+        //Assertions.assertThat(user).as("User is").contains("Seargent Slaughter");
     }
 }
