@@ -55,7 +55,7 @@ public class BrowserFactoryBasic {
             optionss.addArguments("ignore-certificate-errors");
             optionss.addArguments("disable-infobars");
             optionss.setCapability("chrome switches", "--verbose");
-            ChromeDriverManager.getInstance().setup();
+            FirefoxDriverManager.getInstance().setup();
             return new FirefoxDriver(optionss);
         }
     }
