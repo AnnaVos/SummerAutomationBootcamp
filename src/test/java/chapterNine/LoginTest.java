@@ -27,6 +27,6 @@ public class LoginTest extends TestShopScenario {
         Assertions.assertThat(infoAccount).as("Welcome message contains").contains("Welcome to your account.");
 
         //WebElement user = driver.findElement(By.cssSelector("#header > div.nav > div > div > nav > div:nth-child(2) > a > span"));
-        //Assertions.assertThat(user).as("User is").contains("Seargent Slaughter");
+        //Assertions.assertThat(user).as("User is").contains("Seargent Slaughter").getText();
     }
 }
