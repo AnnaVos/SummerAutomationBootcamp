@@ -51,7 +51,7 @@ public class DeleteWishListTest extends loginAsUserAnna {
                 System.out.println("Item NOT deleted.");
             }
         }
-        Assertions.assertThat(itemDeleted).as("item not deleted.").isTrue();
+        Assertions.assertThat(itemDeleted).as("item deleted.").isTrue();
 
         // add item to wish list
         driver.findElement(By.cssSelector("#name")).sendKeys("No Pain No Gain");

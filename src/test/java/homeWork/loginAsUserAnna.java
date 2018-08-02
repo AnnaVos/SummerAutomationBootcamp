@@ -1,5 +1,6 @@
 package homeWork;
 
+import browser.BrowserFactoryBasic;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,20 +10,19 @@ import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-public class loginAsUserAnna {
+public class loginAsUserAnna extends BrowserFactoryBasic {
 
     protected WebDriver driver;
 
     @BeforeMethod
     public void setUp() {
-        ChromeDriverManager.getInstance().setup();
-        driver = new ChromeDriver();
+        driver = BrowserFactoryBasic.getDriver("ie");
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         // go to test shop:
-        driver.get("https:techblog.polteq.com/testshop");
+        driver.get("https://techblog.polteq.com/testshop/index.php");
 
         // log in:
         driver.findElement(By.className("login")).click();
