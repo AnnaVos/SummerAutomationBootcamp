@@ -11,7 +11,7 @@
             <class name="dataDriven.DataDrivenTest"/>
         </classes>
     </test>
-    <test name="dataVar1Test">
+    <test name="dataVar2Test">
         <parameter name="subject" value="Customer service"/>
         <parameter name="email" value="tester@vos.com"/>
         <parameter name="orderID" value="89652388"/>
@@ -20,7 +20,7 @@
             <class name="dataDriven.DataDrivenTest"/>
         </classes>
     </test>
-    <test name="dataVar1Test">
+    <test name="dataVar3Test">
         <parameter name="subject" value="Customer service"/>
         <parameter name="email" value="anna@vos.com"/>
         <parameter name="orderID" value="4321234"/>
@@ -29,13 +29,48 @@
             <class name="dataDriven.DataDrivenTest"/>
         </classes>
     </test>
-    <test name="dataVar1Test">
+    <test name="dataVar4Test">
         <parameter name="subject" value="Customer service"/>
         <parameter name="email" value="tester@anna.com"/>
         <parameter name="orderID" value="85236914"/>
         <parameter name="message" value="TGIF, of niet?!?!"/>
         <classes>
             <class name="dataDriven.DataDrivenTest"/>
+        </classes>
+    </test>
+    <test name="dataVar5Test">
+        <parameter name="email" value="heavylifter@feelthepain.com"/>
+        <parameter name="password" value="xsw21qaz"/>
+        <classes>
+            <class name="dataDriven.DataDrivenLoginTest"/>
+        </classes>
+    </test>
+    <test name="dataVar6Test">
+        <parameter name="email" value="hipster@tester.com"/>
+        <parameter name="password" value="pswpsw123"/>
+        <classes>
+            <class name="dataDriven.DataDrivenLoginTest"/>
+        </classes>
+    </test>
+    <test name="dataVar7Test">
+        <parameter name="email" value="feelfit@nopainnogain.com"/>
+        <parameter name="password" value="password"/>
+        <classes>
+            <class name="dataDriven.DataDrivenLoginTest"/>
+        </classes>
+    </test>
+    <test name="dataVar8Test">
+        <parameter name="email" value="test@guru.com"/>
+        <parameter name="password" value="asdfghjk"/>
+        <classes>
+            <class name="dataDriven.DataDrivenLoginTest"/>
+        </classes>
+    </test>
+    <test name="dataVar9Test">
+        <parameter name="email" value="cross@fit.com"/>
+        <parameter name="password" value="crossfit"/>
+        <classes>
+            <class name="dataDriven.DataDrivenLoginTest"/>
         </classes>
     </test>
 </suite>
