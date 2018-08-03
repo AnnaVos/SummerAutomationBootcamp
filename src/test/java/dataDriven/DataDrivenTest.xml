@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="none">
+    <test name="dataVar1Test">
+        <parameter name="subject" value="Customer service"/>
+        <parameter name="email" value="anna@tester.com"/>
+        <parameter name="orderID" value="23569821"/>
+        <parameter name="message" value="Is het al vrijdag.nl?!?!?!"/>
+        <parameter name="success" value="successFull"/>
+        <classes>
+            <class name="dataDriven.DataDrivenTest"/>
+        </classes>
+    </test>
+    <test name="dataVar1Test">
+        <parameter name="subject" value="Customer service"/>
+        <parameter name="email" value="tester@vos.com"/>
+        <parameter name="orderID" value="89652388"/>
+        <parameter name="message" value="Komt dit wel aan?!?!?!"/>
+        <classes>
+            <class name="dataDriven.DataDrivenTest"/>
+        </classes>
+    </test>
+    <test name="dataVar1Test">
+        <parameter name="subject" value="Customer service"/>
+        <parameter name="email" value="anna@vos.com"/>
+        <parameter name="orderID" value="4321234"/>
+        <parameter name="message" value="Waar zijn mijn wijntjes?!?!?!"/>
+        <classes>
+            <class name="dataDriven.DataDrivenTest"/>
+        </classes>
+    </test>
+    <test name="dataVar1Test">
+        <parameter name="subject" value="Customer service"/>
+        <parameter name="email" value="tester@anna.com"/>
+        <parameter name="orderID" value="85236914"/>
+        <parameter name="message" value="TGIF, of niet?!?!"/>
+        <classes>
+            <class name="dataDriven.DataDrivenTest"/>
+        </classes>
+    </test>
+</suite>
