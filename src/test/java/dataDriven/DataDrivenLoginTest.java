@@ -1,4 +1,4 @@
-package dataDriven;
+/* package dataDriven;
 
 import com.opencsv.CSVReader;
 import org.assertj.core.api.Assertions;
@@ -53,9 +53,9 @@ public class DataDrivenLoginTest extends TestShopScenarioDataDriven {
 
     }
 
-    @DataProvider(name = "getData")
-    public static Object[][] dataProviderForSecurityinference() {
+  //  @DataProvider(name = "getData")
+  //  public static Object[][] dataProviderForSecurityinference() {
 
 
     }
-}
+} */

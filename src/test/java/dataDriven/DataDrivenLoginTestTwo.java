@@ -38,21 +38,21 @@ public class DataDrivenLoginTestTwo extends TestShopScenarioDataDriven {
         return testCases.iterator();
     }
 
-    @Test(dataProvider = "Authentication") {
-        public void fillInForm (String subject, String email, String orderID, String message) {
-            // Open the contact page
-            driver.findElement(By.cssSelector("li#header_link_contact > a")).click();
+    @Test(dataProvider = "Authentication")
+    public void fillInForm(String subject, String email, String orderID, String message) {
+        // Open the contact page
+        driver.findElement(By.cssSelector("li#header_link_contact > a")).click();
 
-            String text = "Sign in.";
-            Assertions.assertThat(text).as("No one is logged in.").contains(driver.findElement(By.cssSelector("#header > div.nav > div > div > nav > div.header_user_info > a")).getText());
+        String text = "Sign in.";
+        Assertions.assertThat(text).as("No one is logged in.").contains(driver.findElement(By.cssSelector("#header > div.nav > div > div > nav > div.header_user_info > a")).getText());
 
-            ContactUsPage contactUsPage = new ContactUsPage(driver);
-            contactUsPage.fillInContactForm(subject, email, orderID, message);
+        ContactUsPage contactUsPage = new ContactUsPage(driver);
+        contactUsPage.fillInContactForm(subject, email, orderID, message);
 
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-            String texttext = "Your message has been successfully sent to our team.";
-            Assertions.assertThat(texttext).as("Contact form is submitted").contains(driver.findElement(By.cssSelector("#center_column > p")).getText());
-        }
+        String texttext = "Your message has been successfully sent to our team.";
+        Assertions.assertThat(texttext).as("Contact form is submitted").contains(driver.findElement(By.cssSelector("#center_column > p")).getText());
     }
 }
+
